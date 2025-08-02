@@ -46,7 +46,7 @@ const connectionString = "mongodb+srv://admin:123@cluster0.pny3i7y.mongodb.net/?
 //connect DB and project
 mongoose.connect(connectionString).then(
     ()=>{
-        console.log("Database connected successfully!")
+        console.log("Your database connected successfully!")
     }
 ).catch(
     ()=>{
