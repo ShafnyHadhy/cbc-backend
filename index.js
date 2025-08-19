@@ -4,9 +4,17 @@ import studentRouter from "./routes/studentsRouter.js";
 import userRouter from "./routes/userRouter.js";
 import jwt from 'jsonwebtoken'
 import productRouter from "./routes/productRouter.js";
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+//loads whats inside on .env file
+dotenv.config();
 
 //making const variable
-const app = express()
+const app = express();
+
+//a middleware to connect backend and frontend
+app.use(cors());
 
 //Middleware to parse JSON bodies
 app.use(express.json())
@@ -21,7 +29,7 @@ app.use(
 
             token = token.replace("Bearer ", "")
             
-            jwt.verify(token,"jwt-secret",
+            jwt.verify(token, process.env.JWT_SECRET,
                 (err,decoded)=>{
                    if(decoded == null){
                         res.json(
@@ -41,7 +49,7 @@ app.use(
 )
 
 //link to connect backend with mongoDB
-const connectionString = "mongodb+srv://admin:123@cluster0.pny3i7y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const connectionString = process.env.MONGO_URI;
 
 //connect DB and project
 mongoose.connect(connectionString).then(
@@ -54,9 +62,9 @@ mongoose.connect(connectionString).then(
     }
 )
 
-app.use("/students", studentRouter)
-app.use("/users", userRouter)
-app.use("/products", productRouter)
+app.use("/api/students", studentRouter)
+app.use("/api/users", userRouter)
+app.use("/api/products", productRouter)
 
 // function success(){
 //     console.log("Server is started")
