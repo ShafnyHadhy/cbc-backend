@@ -17,6 +17,4 @@ productRouter.delete('/:productID', deleteProduct);
 productRouter.put('/:productID', updateProduct);
 productRouter.get('/:productID', getProductByID);
 
-
-
 export default productRouter;

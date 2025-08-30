@@ -28,7 +28,6 @@ export async function createProduct(req, res){
             message: "Failed to create product"
         });
     }
-    
 }
 
 export async function getProducts(req, res){
@@ -93,7 +92,7 @@ export async function updateProduct(req, res){
     }catch(err){
         console.error(err);
         res.status(500).json({
-            message: "failed to update product"
+            message: "Failed to update product"
         });
     }
 }
