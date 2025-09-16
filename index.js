@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import productRouter from "./routes/productRouter.js";
 import cors from 'cors';
 import dotenv from 'dotenv';
+import orderRouter from "./routes/orderRouter.js";
 
 //loads whats inside on .env file
 dotenv.config();
@@ -65,6 +66,7 @@ mongoose.connect(connectionString).then(
 app.use("/api/students", studentRouter)
 app.use("/api/users", userRouter)
 app.use("/api/products", productRouter)
+app.use("/api/orders", orderRouter)
 
 // function success(){
 //     console.log("Server is started")
